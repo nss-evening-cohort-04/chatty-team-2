@@ -11,17 +11,16 @@ addDom.getDefaultMessages = function() {
     return messages;
 };
 addDom.loadMessages = function() {
+   Chatty.setDefaultMessages();
    var chattyMessagesDiv = document.getElementById("chatty-messages");
    var messagesHTML = "";
    console.log(messages.length);
   	for (var i = 0; i < messages.length; i++) {
    	 messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}</div>`;
   	}
-   console.log(messagesHTML);
+
 };
 return addDom;
 })(Chatty || {});
-Chatty.loadXhr();
-Chatty.setDefaultMessages();
-Chatty.getDefaultMessages();
-// Chatty.loadMessages();
+
+

@@ -9,7 +9,8 @@ var Chatty = (function() {
             loadXhr: function() {
                 var messageRequest = new XMLHttpRequest();
                 messageRequest.addEventListener("load", function() {
-                    currentMessages = JSON.parse(this.responseText);
+                    var data = JSON.parse(this.responseText);
+                    currentMessages = data.messages;
                 });
                 messageRequest.addEventListener("error", function() {
                     console.log("There was an error processing the file.");
@@ -22,4 +23,5 @@ var Chatty = (function() {
             }
   };
 })();
+Chatty.loadXhr();
 
