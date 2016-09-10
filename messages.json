@@ -1,0 +1,24 @@
+{
+  "messages": [
+    {
+      "id": 1,
+      "message": "I had a great day. How about you?"
+    },
+    {
+      "id": 2,
+      "message": "I had a great day also."
+    },
+    {
+      "id": 3,
+      "message": "What are you doing for dinner?"
+    },
+    {
+      "id": 4,
+      "message": "I'm having mexican. What about you?"
+    },
+    {
+      "id": 5,
+      "message": "I'm staying at home tonight."
+    }
+  ]
+}
