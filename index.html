@@ -3,10 +3,48 @@
   <head>
     <meta charset="utf-8">
     <title>Team 2 Chatty</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            Chatty!
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <input type="text" name="new-message" id="new-message" placeholder="Enter Message">
+        </div>
+        <div class="col-md-4">
+          <button id="clear-messages">Clear Message Board</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <input type="checkbox" id="dark-theme" name="dark-theme" value="dark">Dark Theme<br>
+          <input type="checkbox" id="large-text" name="large-text" value="large-text">Large Text<br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          Messages:
+        </div>
+        <div class="col-md-12">
+          <div id="chatty-messages">Test Messages</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.slim.min.js" integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/Chatty.js" charset="utf-8"></script>
   </body>
 </html>
