@@ -2,7 +2,7 @@ var Chatty = (function() {
 
   // Private variable to store messages in
   var currentMessages = [];
-
+  counterId = 6;
 
   // Return the public interface that other code can interact with
   return {
@@ -21,6 +21,7 @@ var Chatty = (function() {
             getMessages: function() {
                return currentMessages;
             }
+            // method to get and set the counterID.....
   };
 })();
 Chatty.loadXhr();
