@@ -21,10 +21,8 @@ var Chatty = (function() {
             getMessages: function() {
                return currentMessages;
             },
-            // method to get and set the counterID.....
             setCounterId: function() {
-                counterID = counterID++;
-                return counterID;
+                return counterId++;
             },
             getCounterId: function() {
                 return counterId;
