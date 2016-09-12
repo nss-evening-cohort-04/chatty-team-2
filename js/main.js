@@ -23,12 +23,15 @@ document.getElementById("large-text").addEventListener("change", function() {
 })
 
 function isChecked(input) {
-    if(input.checked) {
-        if(input.id === "dark-theme") {
-            document.body.className = "dark-theme";
-        }
-        if(input.id === "large-text") {
-            document.body.className = "bigger-font";
-        }
+    var bodyDiv = document.body;
+    console.log(bodyDiv);
+    if(input.id === "dark-theme" && input.checked) {
+        bodyDiv.classList.add("dark-theme");
+    } else if (input.id === "dark-theme" && input.checked != "true") {
+        bodyDiv.classList.remove("dark-theme");
+    } else if(input.id === "large-text" && input.checked) {
+        bodyDiv.classList.add("large-text");
+    } else if (input.id === "large-text" && input.checked != "true") {
+        bodyDiv.classList.remove("large-text");
     }
 }
