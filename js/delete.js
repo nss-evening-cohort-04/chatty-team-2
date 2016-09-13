@@ -9,7 +9,7 @@ var Chatty = (function(domHandler){
 
    domHandler.removeEl = function(id){
     var domElement = document.getElementById(id);
-    domElement.parentNode().removeChild(domElement);
+    domElement.parentNode.remove(domElement);
    };
 
 return domHandler;
