@@ -4,7 +4,7 @@ var Chatty = (function() {
   var chattyMessagesDiv = document.getElementById("chatty-messages");
 
   var messages = [];
-  counterId = 0;
+  counterId = 6;
 
   // Return the public interface that other code can interact with
   return {
@@ -21,7 +21,7 @@ var Chatty = (function() {
       var messagesHTML = "";
       counterId = 0;
       for (var i = 0; i < messages.length; i++) {
-        messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}<button type="button" id="message_${counterId}" onClick="Chatty.domHandler();">Delete</button></div>`;
+        messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}<button type="button" id="message_${i}" onClick="Chatty.domHandler(this.id);">Delete</button></div>`;
         counterId++;
       }
       chattyMessagesDiv.innerHTML = messagesHTML;
