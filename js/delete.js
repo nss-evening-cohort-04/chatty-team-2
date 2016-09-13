@@ -8,7 +8,7 @@ var Chatty = (function(deleteMessage){
         return message.id === id;
       });
       messages.splice(selectedIndex, 1);
-      
+
    };
 
 return deleteMessage;
