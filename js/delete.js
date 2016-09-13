@@ -4,11 +4,11 @@ var Chatty = (function(domHandler){
    domHandler.deleteMessage = function(elementId){
     var id = elementId.substring(elementId.length - 8);
       Chatty.removeMessage(id);
-      Chatty.removeEl(id);
+      Chatty.removeEl(elementId);
    };
 
    domHandler.removeEl = function(id){
-    var domElement = document.getElementById(`message-${id}`);
+    var domElement = document.getElementById(id);
     domElement.parentNode().removeChild(domElement);
    };
 
