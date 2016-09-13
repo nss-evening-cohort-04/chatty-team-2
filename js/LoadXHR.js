@@ -7,7 +7,6 @@ addDom.loadXhr = function() {
     messageRequest.addEventListener("load", function() {
         var data = JSON.parse(this.responseText);
         currentMessages = data.messages;
-        console.log("loaded messages");
         Chatty.setMessages(currentMessages);
         Chatty.loadMessages();
     });
