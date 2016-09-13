@@ -12,12 +12,11 @@ var Chatty = (function() {
         messages.push({"id":id, "message":message})
     },
     removeMessage: function(id) {
-    var messages = Chatty.getDefaultMessages();
       var selectedIndex = messages.findIndex(function(message){
         return message.id === id;
       });
       messages.splice(selectedIndex, 1);
-      
+
    },
     getMessages: function() {
         return messages;
@@ -29,7 +28,7 @@ var Chatty = (function() {
       var messagesHTML = "";
       counterId = 0;
       for (var i = 0; i < messages.length; i++) {
-        messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}<button type="button" id="message_${i}" onClick="Chatty.domHandler(this.id);">Delete</button></div>`;
+        messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}<button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">Delete</button></div>`;
         counterId++;
       }
       chattyMessagesDiv.innerHTML = messagesHTML;
