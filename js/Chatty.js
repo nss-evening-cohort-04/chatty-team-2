@@ -25,13 +25,15 @@ var Chatty = (function() {
       messages = xhrMessages;
     },
     loadMessages: function() {
-      var messagesHTML = "";
-      counterId = 0;
-      for (var i = 0; i < messages.length; i++) {
-        messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}&nbsp;<button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">&nbsp;Delete&nbsp;</button></div>`;
-        counterId++;
-      }
-      chattyMessagesDiv.innerHTML = messagesHTML;
+      chattyMessagesDiv.innerHTML = messages.map((message, i) => {
+        return `
+          <div id="message-${message.id}">
+            ${message.message}
+            <button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">
+              Delete
+            </button>
+          </div>`;
+      }).join("");
     },
     setCounterId: function() {
       return counterId++;
