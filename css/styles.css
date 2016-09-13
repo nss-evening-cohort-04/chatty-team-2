@@ -1,3 +1,14 @@
+#logo{
+  text-align: top;
+}
+
+#footer-text{
+  position: absolute;
+  text-align: center;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 .dark-theme {
     background-color: black;
     color: white;
