@@ -1,6 +1,5 @@
 var Chatty = (function(domHandler){
 
-
   //  remove message from DOM and array
    domHandler.deleteMessage = function(elementId){
     var id = elementId.substring(elementId.length - 8);
