@@ -9,3 +9,11 @@
   bottom: 0;
   left: 0;
 }
+.dark-theme {
+    background-color: black;
+    color: white;
+}
+
+.large-text {
+    font-size: large;
+}
