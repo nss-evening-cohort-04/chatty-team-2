@@ -10,9 +10,9 @@ document.getElementById("new-message").addEventListener("keyup", function(e) {
       Chatty.addMessage(Chatty.getCounterId(), e.target.value);
       Chatty.setCounterId();
       Chatty.loadMessages();
-     
+
       e.target.value = "";
-  
+
     }
 });
 
@@ -47,3 +47,11 @@ function isChecked(input) {
     }
 }
 
+// User object
+var users = {
+  names: ["Xavier", "Joanna", "Mackenzie", "Gunter", "Iveta", "Sven"]
+};
+
+document.getElementById('select-user').innerHTML = users.names.map((name,i) => {
+  return (i<1) ? `<input type="radio" name="users" id="users" value=${name} checked> ${name} </input>` : `<input type="radio" name="users" id="users" value=${name}> ${name} </input>`;
+}).join("");
