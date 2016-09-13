@@ -1,8 +1,13 @@
+Chatty.loadXhr();
 // eventlistener for new message
 document.getElementById("new-message").addEventListener("keyup", function(e) {
     if (e.keyCode == 13) {
         // get id from Chatty.js
-
+      var messagesLength = Chatty.getMessages();
+      Chatty.addMessage(Chatty.getCounterId(), e.target.value);
+      Chatty.setCounterId();
+      Chatty.loadMessages();
+      e.target.value = "";
     }
 });
 

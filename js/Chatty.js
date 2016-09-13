@@ -1,33 +1,34 @@
 var Chatty = (function() {
 
   // Private variable to store messages in
-  var currentMessages = [];
+  var chattyMessagesDiv = document.getElementById("chatty-messages");
+
+  var messages = [];
   counterId = 6;
 
   // Return the public interface that other code can interact with
   return {
-            loadXhr: function() {
-                var messageRequest = new XMLHttpRequest();
-                messageRequest.addEventListener("load", function() {
-                    var data = JSON.parse(this.responseText);
-                    currentMessages = data.messages;
-                });
-                messageRequest.addEventListener("error", function() {
-                    console.log("There was an error processing the file.");
-                });
-                messageRequest.open("GET", "messages.json");
-                messageRequest.send();
-            },
-            getMessages: function() {
-               return currentMessages;
-            },
-            setCounterId: function() {
-                return counterId++;
-            },
-            getCounterId: function() {
-                return counterId;
-            }
+    addMessage: function(id, message) {
+        messages.push({"id":id, "message":message})
+    },
+    getMessages: function() {
+        return messages;
+    },
+    setMessages: function (xhrMessages) {
+      messages = xhrMessages;
+    },
+    loadMessages: function() {
+      var messagesHTML = "";
+      for (var i = 0; i < messages.length; i++) {
+        messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}</div>`;
+      }
+      chattyMessagesDiv.innerHTML = messagesHTML;
+    },
+    setCounterId: function() {
+      return counterId++;
+    },
+    getCounterId: function() {
+        return counterId;
+    }
   };
 })();
-Chatty.loadXhr();
-
