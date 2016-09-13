@@ -1,15 +1,16 @@
-var Chatty = (function(deleteMessage){
+var Chatty = (function(domHandler){
 
-
-  //  remove message
-   deleteMessage.removeMessage = function(id) {
-    var messages = Chatty.getDefaultMessages();
-      var selectedIndex = messages.findIndex(function(message){
-        return message.id === id;
-      });
-      messages.splice(selectedIndex, 1);
-
+  //  remove message from DOM and array
+   domHandler.deleteMessage = function(elementId){
+    var id = elementId.substring(elementId.length - 8);
+      Chatty.removeMessage(id);
+      Chatty.removeEl(id);
    };
 
-return deleteMessage;
+   domHandler.removeEl = function(id){
+    var domElement = document.getElementById(`message-${id}`);
+    domElement.parentNode().removeChild(domElement);
+   };
+
+return domHandler;
 })(Chatty  || {});

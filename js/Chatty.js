@@ -11,6 +11,14 @@ var Chatty = (function() {
     addMessage: function(id, message) {
         messages.push({"id":id, "message":message})
     },
+    removeMessage: function(id) {
+    var messages = Chatty.getDefaultMessages();
+      var selectedIndex = messages.findIndex(function(message){
+        return message.id === id;
+      });
+      messages.splice(selectedIndex, 1);
+      
+   },
     getMessages: function() {
         return messages;
     },
