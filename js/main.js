@@ -15,6 +15,7 @@ document.getElementById("new-message").addEventListener("keyup", function(e) {
 document.getElementById("clear-messages").addEventListener("click", function() {
     // clear all messages from the dom
     document.getElementById("chatty-messages").innerHTML = "";
+    Chatty.clearMessages();
 })
 
 // eventListener for dark theme
@@ -40,3 +41,4 @@ function isChecked(input) {
         bodyDiv.classList.remove("large-text");
     }
 }
+

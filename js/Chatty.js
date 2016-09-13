@@ -19,8 +19,10 @@ var Chatty = (function() {
     },
     loadMessages: function() {
       var messagesHTML = "";
+      counterId = 0;
       for (var i = 0; i < messages.length; i++) {
-        messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}</div>`;
+        messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}<button type="button" id="message_${i}" onClick="Chatty.domHandler(this.id);">Delete</button></div>`;
+        counterId++;
       }
       chattyMessagesDiv.innerHTML = messagesHTML;
     },
@@ -29,6 +31,9 @@ var Chatty = (function() {
     },
     getCounterId: function() {
         return counterId;
+    },
+    clearMessages: function() {
+        messages = [];
     }
   };
 })();
