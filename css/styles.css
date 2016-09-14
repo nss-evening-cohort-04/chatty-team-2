@@ -2,6 +2,8 @@
   text-align: top;
 }
 
+body { padding-top: 70px; }
+
 #footer-text{
   position: absolute;
   text-align: center;

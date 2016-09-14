@@ -5,12 +5,22 @@ Chatty.loadXhr();
 // eventlistener for new message
 document.getElementById("new-message").addEventListener("keyup", function(e) {
     if (e.keyCode == 13) {
-        // get id from Chatty.js
-      var messagesLength = Chatty.getMessages();
+    if (e.target.value === "") {
+      alert("message required");
+          return;
+        }
+    if (Chatty.getSelectedMessage() !== null){
+      Chatty.updateMessage(Chatty.getSelectedMessage(), e.target.value);
+      Chatty.setSelectedMessage(null);
+    }
+    else {
       Chatty.addMessage(Chatty.getCounterId(), e.target.value);
       Chatty.setCounterId();
+    }
       Chatty.loadMessages();
+
       e.target.value = "";
+
     }
 });
 // eventListener for clearMessages
@@ -46,4 +56,15 @@ function isChecked(input) {
     if(input.id === "change-theme" && input.checked) {
         $('#myModal').modal("show");
     }
+
 }
+
+
+// User object
+var users = {
+  names: ["Xavier", "Joanna", "Mackenzie", "Gunter", "Iveta", "Sven"]
+};
+
+document.getElementById('select-user').innerHTML = users.names.map((name,i) => {
+  return (i<1) ? `<input type="radio" name="users" id="users" value=${name} checked> ${name} </input>` : `<input type="radio" name="users" id="users" value=${name}> ${name} </input>`;
+}).join("");

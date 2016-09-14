@@ -9,7 +9,8 @@ var Chatty = (function() {
   // Return the public interface that other code can interact with
   return {
     addMessage: function(id, message) {
-        messages.push({"id":id, "message":message})
+      var user = document.querySelector('input[name="users"]:checked').value;
+        messages.push({"id":id, "message":message, "user": user, "timestamp": new Date()})
     },
     removeMessage: function(id) {
       var selectedIndex = messages.findIndex(function(message){
@@ -25,13 +26,40 @@ var Chatty = (function() {
       messages = xhrMessages;
     },
     loadMessages: function() {
-      var messagesHTML = "";
-      counterId = 0;
-      for (var i = 0; i < messages.length; i++) {
-        messagesHTML += `<div id="message-${messages[i].id}">${messages[i].message}&nbsp;<button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">&nbsp;Delete&nbsp;</button></div>`;
-        counterId++;
-      }
-      chattyMessagesDiv.innerHTML = messagesHTML;
+      chattyMessagesDiv.innerHTML = messages.map((message, i) => {
+        if (message.modified) {
+          content = `
+          <div id="message-${message.id}">
+            <span><b>${message.user}: </b></span>
+            <span class="message">${message.message}</span>
+            <span>(edited)</span>
+            <span>${message.timestamp}</span>            
+            <span>${message.modifiedTimeStamp}</span>            
+            <span>Edited by: ${message.modifiedBy}</span>            
+            <button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">
+              Delete
+            </button>
+            <button type="button" id="editBtn_${i}" onClick="Chatty.editEl('message-${message.id}');">
+              Edit
+            </button>
+          </div>`;
+        }
+        else {
+        content = `
+          <div id="message-${message.id}">
+            <span><b>${message.user}: </b></span>
+            <span class="message">${message.message}</span>
+            <span>${message.timestamp}</span>            
+            <button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">
+              Delete
+            </button>
+            <button type="button" id="editBtn_${i}" onClick="Chatty.editEl('message-${message.id}');">
+              Edit
+            </button>
+          </div>`;
+        }
+          return content;
+      }).join("");
     },
     setCounterId: function() {
       return counterId++;
