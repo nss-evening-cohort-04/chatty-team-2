@@ -12,5 +12,6 @@ var Chatty = (function(domHandler){
     domElement.parentNode.remove(domElement);
    };
 
+
 return domHandler;
 })(Chatty  || {});
