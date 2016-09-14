@@ -49,14 +49,19 @@ document.getElementById("picker-font").addEventListener("change", function() {
 document.getElementById("picker").addEventListener("change", function() {
  backChange = this.value;
 })
-
+document.getElementById("large-text").addEventListener("change", function() {
+ isChecked(this);
+})
 function isChecked(input) {
     var bodyDiv = document.body;
     console.log(bodyDiv);
     if(input.id === "change-theme" && input.checked) {
         $('#myModal').modal("show");
+    } else if(input.id === "large-text" && input.checked) {
+        bodyDiv.classList.add("large-text");
+    } else if (input.id === "large-text" && input.checked != "true") {
+        bodyDiv.classList.remove("large-text");
     }
-
 }
 
 
