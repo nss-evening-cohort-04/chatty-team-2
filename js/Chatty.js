@@ -27,15 +27,38 @@ var Chatty = (function() {
     },
     loadMessages: function() {
       chattyMessagesDiv.innerHTML = messages.map((message, i) => {
-        return `
+        if (message.modified) {
+          content = `
           <div id="message-${message.id}">
             <span><b>${message.user}: </b></span>
-            <span>${message.message}</span>
-            <span>${message.timestamp}</span>
+            <span class="message">${message.message}</span>
+            <span>(edited)</span>
+            <span>${message.timestamp}</span>            
+            <span>${message.modifiedTimeStamp}</span>            
+            <span>Edited by: ${message.modifiedBy}</span>            
             <button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">
               Delete
             </button>
+            <button type="button" id="editBtn_${i}" onClick="Chatty.editEl('message-${message.id}');">
+              Edit
+            </button>
           </div>`;
+        }
+        else {
+        content = `
+          <div id="message-${message.id}">
+            <span><b>${message.user}: </b></span>
+            <span class="message">${message.message}</span>
+            <span>${message.timestamp}</span>            
+            <button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">
+              Delete
+            </button>
+            <button type="button" id="editBtn_${i}" onClick="Chatty.editEl('message-${message.id}');">
+              Edit
+            </button>
+          </div>`;
+        }
+          return content;
       }).join("");
     },
     setCounterId: function() {
