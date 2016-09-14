@@ -10,9 +10,9 @@ document.getElementById("new-message").addEventListener("keyup", function(e) {
       Chatty.addMessage(Chatty.getCounterId(), e.target.value);
       Chatty.setCounterId();
       Chatty.loadMessages();
-     
+
       e.target.value = "";
-  
+
     }
 });
 
