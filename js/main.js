@@ -6,9 +6,14 @@ document.getElementById("new-message").addEventListener("keyup", function(e) {
       alert("message required");
           return;
         }
-      var messagesLength = Chatty.getMessages();
+    if (Chatty.getSelectedMessage() !== null){
+      Chatty.updateMessage(Chatty.getSelectedMessage(), e.target.value);
+      Chatty.setSelectedMessage(null);
+    }
+    else {
       Chatty.addMessage(Chatty.getCounterId(), e.target.value);
       Chatty.setCounterId();
+    }
       Chatty.loadMessages();
 
       e.target.value = "";
