@@ -23,3 +23,7 @@ body { padding-top: 70px; }
 input, button{
     color: black;
 }
+
+.message-block {
+  line-height: 20px;
+}

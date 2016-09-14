@@ -13,11 +13,13 @@ var Chatty = (function() {
         messages.push({"id":id, "message":message, "user": user, "timestamp": new Date()})
     },
     removeMessage: function(id) {
+      console.log("id to remove", id);
       var selectedIndex = messages.findIndex(function(message){
-        return message.id === id;
+        return message.id == id;
       });
+      console.log("selectedIndex", selectedIndex);
       messages.splice(selectedIndex, 1);
-
+      Chatty.loadMessages();
    },
     getMessages: function() {
         return messages;
@@ -26,37 +28,40 @@ var Chatty = (function() {
       messages = xhrMessages;
     },
     loadMessages: function() {
-      chattyMessagesDiv.innerHTML = messages.map((message, i) => {
+      chattyMessagesDiv.innerHTML = messages.slice(-20).map((message, i) => {
         if (message.modified) {
           content = `
-          <div id="message-${message.id}">
+          <div class="row">
+          <div id="message-${message.id}" class="message-block">
             <span><b>${message.user}: </b></span>
             <span class="message">${message.message}</span>
             <span>(edited)</span>
-            <span>${message.timestamp}</span>            
-            <span>${message.modifiedTimeStamp}</span>            
-            <span>Edited by: ${message.modifiedBy}</span>            
-            <button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">
-              Delete
-            </button>
-            <button type="button" id="editBtn_${i}" onClick="Chatty.editEl('message-${message.id}');">
+            <button type="button" id="editBtn_${i}" class="pull-right" onClick="Chatty.editEl('message-${message.id}');">
               Edit
             </button>
+            <button type="button" id="message_${i}" class="pull-right" onClick="Chatty.deleteMessage('message-${message.id}');">
+              Delete
+            </button>
+            <span class="pull-right"> at ${new Date(message.modifiedTimeStamp).toLocaleString()}</span>
+            <span class="pull-right">Edited by: ${message.modifiedBy} </span>
+          </div>
           </div>`;
         }
         else {
         content = `
-          <div id="message-${message.id}">
+<div class="row">
+          <div id="message-${message.id}" class="message-block">
             <span><b>${message.user}: </b></span>
             <span class="message">${message.message}</span>
-            <span>${message.timestamp}</span>            
-            <button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">
-              Delete
-            </button>
-            <button type="button" id="editBtn_${i}" onClick="Chatty.editEl('message-${message.id}');">
+            <button type="button" id="editBtn_${i}" class="pull-right" onClick="Chatty.editEl('message-${message.id}');">
               Edit
             </button>
-          </div>`;
+            <button type="button" id="message_${i}" class="pull-right" onClick="Chatty.deleteMessage('message-${message.id}');">
+              Delete
+            </button>
+            <span class="pull-right">${new Date(message.timestamp).toLocaleString()}</span>
+          </div>
+</div>`;
         }
           return content;
       }).join("");
