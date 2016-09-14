@@ -26,16 +26,17 @@ var Chatty = (function() {
       messages = xhrMessages;
     },
     loadMessages: function() {
-      chattyMessagesDiv.innerHTML = messages.map((message, i) => {
+      chattyMessagesDiv.innerHTML = messages.slice(-20).map((message, i) => {
+      //chattyMessagesDiv.innerHTML = messages.map((message, i) => {
         if (message.modified) {
           content = `
           <div id="message-${message.id}">
             <span><b>${message.user}: </b></span>
             <span class="message">${message.message}</span>
             <span>(edited)</span>
-            <span>${message.timestamp}</span>            
-            <span>${message.modifiedTimeStamp}</span>            
-            <span>Edited by: ${message.modifiedBy}</span>            
+            <span>${message.timestamp}</span>
+            <span>${message.modifiedTimeStamp}</span>
+            <span>Edited by: ${message.modifiedBy}</span>
             <button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">
               Delete
             </button>
@@ -49,7 +50,7 @@ var Chatty = (function() {
           <div id="message-${message.id}">
             <span><b>${message.user}: </b></span>
             <span class="message">${message.message}</span>
-            <span>${message.timestamp}</span>            
+            <span>${message.timestamp}</span>
             <button type="button" id="message_${i}" onClick="Chatty.deleteMessage(this.id);">
               Delete
             </button>

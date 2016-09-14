@@ -18,17 +18,16 @@ var selectedMessage = null;
     selectedMessage = elementId;
    };
    domHandler.updateMessage = function(elementId, value){
-
     var id = elementId.substring(elementId.length - 1);
     var messages = Chatty.getMessages();
-    var editedMsg = messages.find(function(message){
+    var messageIndex = messages.findIndex(function(message){
       return message.id == id;
     });
-
-   editedMsg.message = value;
-   editedMsg.modified = true;
-   editedMsg.modifiedTimeStamp = new Date();
-   editedMsg.modifiedBy = document.querySelector('input[name="users"]:checked').value;
+     var editedMsg = messages[messageIndex];
+     editedMsg.message = value;
+     editedMsg.modified = true;
+     editedMsg.modifiedTimeStamp = new Date();
+     editedMsg.modifiedBy = document.querySelector('input[name="users"]:checked').value;
    };
 
    domHandler.getSelectedMessage = function(){
