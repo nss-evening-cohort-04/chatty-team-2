@@ -1,3 +1,6 @@
+var fontChange;
+var backChange;
+var changeTheme = document.getElementById('change-theme');
 Chatty.loadXhr();
 // eventlistener for new message
 document.getElementById("new-message").addEventListener("keyup", function(e) {
@@ -20,7 +23,6 @@ document.getElementById("new-message").addEventListener("keyup", function(e) {
 
     }
 });
-
 // eventListener for clearMessages
 document.getElementById("clear-messages").addEventListener("click", function() {
     // clear all messages from the dom
@@ -29,28 +31,34 @@ document.getElementById("clear-messages").addEventListener("click", function() {
 })
 
 // eventListener for dark theme
-document.getElementById("dark-theme").addEventListener("change", function() {
+changeTheme.addEventListener("change", function() {
     isChecked(this);
 })
 
-// eventListener for large text
-document.getElementById("large-text").addEventListener("change", function() {
-    isChecked(this);
+document.getElementById("save-changes").addEventListener("click", function() {
+document.body.style.color = fontChange;
+document.body.style.backgroundColor = backChange;
+changeTheme.checked = false;
+$('#myModal').modal("hide");
+
+
+})
+document.getElementById("picker-font").addEventListener("change", function() {
+ fontChange = this.value;
+})
+document.getElementById("picker").addEventListener("change", function() {
+ backChange = this.value;
 })
 
 function isChecked(input) {
     var bodyDiv = document.body;
     console.log(bodyDiv);
-    if(input.id === "dark-theme" && input.checked) {
-        bodyDiv.classList.add("dark-theme");
-    } else if (input.id === "dark-theme" && input.checked != "true") {
-        bodyDiv.classList.remove("dark-theme");
-    } else if(input.id === "large-text" && input.checked) {
-        bodyDiv.classList.add("large-text");
-    } else if (input.id === "large-text" && input.checked != "true") {
-        bodyDiv.classList.remove("large-text");
+    if(input.id === "change-theme" && input.checked) {
+        $('#myModal').modal("show");
     }
+
 }
+
 
 // User object
 var users = {
