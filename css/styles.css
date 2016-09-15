@@ -1,29 +1,58 @@
-#logo{
-  text-align: top;
+#logo {
+  text-align : top;
 }
 
-body { padding-top: 70px; }
-
-#footer-text{
-  position: absolute;
-  text-align: center;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.navbar-brand {
+  padding-top    : 0;
+  padding-bottom : 0;
 }
+
+body {
+  box-sizing : border-box;
+  padding    : 70px 0;
+}
+
 .dark-theme {
-    background-color: darkgrey;
-    color: white;
+  color            : white;
+  background-color : darkgrey;
 }
 
 .large-text {
-    font-size: large;
+  font-size : large;
 }
 
-input, button{
-    color: black;
+button,
+input {
+  color : black;
 }
 
 .message-block {
-  line-height: 20px;
+  margin      : 25px;
+  line-height : 20px;
+}
+
+.chatty-messages {
+  margin-bottom    : 20px;
+  padding          : 10px;
+  border           : 1px solid black;
+  background-color : white;
+}
+
+.message-btn {
+  margin : 0 5px;
+}
+
+.footer {
+  z-index          : 99;
+  display          : flex;
+  height           : 70px;
+  color            : white;
+  background-color : #333;
+  align-items      : center;
+  justify-content  : center;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
 }

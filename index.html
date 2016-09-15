@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <title>Team 2 Chatty</title>
@@ -7,8 +8,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
   </head>
+
   <body>
-  <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#"><img src=images/chatty_2_img.png height="50" id="logo">
@@ -16,55 +18,68 @@
         </div>
       </div>
     </nav>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Change Theme</h4>
-      </div>
-      <div class="modal-body">
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <input type="color"  value="#ff0000" id="picker">Background Color</input>
-        <input type="color"  value="#ff0000" id="picker-font">Font Color</input>
-        <button type="button" class="btn btn-primary" id="save-changes">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
     <div class="container">
-      <div class="row">
-        <div class="col-md-8">
+      <div class="row no-gutter">
+        <div class="col-md-10">
           <div class="col-md-8">
-            <input type="text" name="new-message" id="new-message" placeholder="Enter Message">
+            <div class="form-group">
+              <input type="text" name="new-message" id="new-message" class="form-control" placeholder="Enter Message">
+            </div>
           </div>
           <div class="col-md-4" id="select-user"></div>
         </div>
-        <div class="col-md-4">
-          <button id="clear-messages">Clear Message Board</button>
+        <div class="col-md-2">
+          <button id="clear-messages" class="btn btn-default">Clear Message Board</button>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <input type="checkbox" id="change-theme" name="change-theme" value="change">Change Theme<br>
-          <input type="checkbox" id="large-text" name="large-text" value="large-text">Large Text<br>
+          <div class="form-group">
+            <button type="button" id="change-theme" class="btn btn-default">Change Theme</button>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          Messages:
+          <h3>Messages:</h3>
         </div>
+      </div>
+      <div class="row">
         <div class="col-md-12">
-          <div id="chatty-messages"></div>
+          <div id="chatty-messages" class="chatty-messages col-md-12"></div>
         </div>
       </div>
     </div>
-<footer id="footer-text">
-  JDNJ Designs 2016
-</footer>
+    <footer class="footer navbar-fixed-bottom text-center">
+      JDNJ Designs 2016
+    </footer>
+
+    <!-- MODAL Start-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Change Theme</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Background Color: <input type="color" id="picker"></label>
+            </div>
+            <div class="form-group">
+              <label>Font Color: <input type="color" id="picker-font"></label>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-inline"><input type="checkbox" id="large-text" name="large-text" value="large-text">Large Text</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="cancel-theme" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" id="save-changes">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.1.0.slim.min.js" integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -73,4 +88,5 @@
     <script src="js/delete.js" charset="utf-8"></script>
     <script src="js/main.js" charset="utf-8"></script>
   </body>
+
 </html>
