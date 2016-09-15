@@ -35,6 +35,11 @@ document.getElementById("cancel-theme").addEventListener("click", function () {
   $('#myModal').modal("hide");
   document.getElementById('picker').value = colorToHex(window.getComputedStyle(document.body, null).backgroundColor);
   document.getElementById('picker-font').value = colorToHex(window.getComputedStyle(document.body, null).color);
+  if (document.body.classList.contains("large-text")) {
+    document.getElementById("large-text").checked = true;
+  } else {
+    document.getElementById("large-text").checked = false;
+  }
 });
 
 document.getElementById("save-changes").addEventListener("click", function () {
