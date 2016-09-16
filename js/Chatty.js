@@ -15,7 +15,7 @@ var Chatty = (function () {
         "message": message,
         "user": user,
         "timestamp": new Date()
-      })
+      });
     },
     removeMessage: function (id) {
       var selectedIndex = messages.findIndex(function (message) {
