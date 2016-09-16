@@ -15,12 +15,14 @@ document.getElementById("new-message").addEventListener("keyup", function (e) {
     }
     Chatty.loadMessages();
     e.target.value = "";
+    document.getElementById("clear-messages").disabled = false;
   }
 });
 // eventListener for clearMessages
 document.getElementById("clear-messages").addEventListener("click", function () {
   // clear all messages from the dom
   document.getElementById("chatty-messages").innerHTML = "";
+  this.disabled=true;
   Chatty.clearMessages();
 });
 
