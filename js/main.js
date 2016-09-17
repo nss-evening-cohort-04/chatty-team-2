@@ -16,14 +16,16 @@ document.getElementById("new-message").addEventListener("keyup", function (e) {
     if (Chatty.getSelectedMessage() !== null) {
       Chatty.updateMessage(Chatty.getSelectedMessage(), e.target.value);
       Chatty.setSelectedMessage(null);
+      Chatty.loadMessages();
     } else {
       Chatty.addMessage(Chatty.getCounterId(), e.target.value);
       Chatty.setCounterId();
+      Chatty.loadMessages();
+      chattyMessages.scrollTop = chattyMessages.scrollHeight;
     }
-    Chatty.loadMessages();
+
     e.target.value = "";
     document.getElementById("clear-messages").disabled = false;
-    chattyMessages.scrollTop = chattyMessages.scrollHeight;
   }
 });
 // eventListener for clearMessages
