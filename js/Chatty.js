@@ -33,7 +33,12 @@ var Chatty = (function () {
     loadMessages: function () {
       var user = document.querySelector('input[name="users"]:checked').value;
       let content;
-      chattyMessagesDiv.innerHTML = messages.slice(-20).map((message, i) => {
+      if(document.getElementById("load-twenty").checked){
+        var cpMessages = JSON.parse(JSON.stringify(messages.slice(-20)));
+      }else{
+        var cpMessages = messages;
+      }
+      chattyMessagesDiv.innerHTML = cpMessages.map((message, i) => {
         content = "";
         content += `<div id="message-${message.id}" class="message-block">`;
         content += `  <span><b>${message.user}: </b></span>`;

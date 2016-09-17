@@ -1,4 +1,11 @@
 Chatty.loadXhr();
+var chattyMessages = document.getElementById("chatty-messages");
+window.onresize = resizeMessageDiv;
+function resizeMessageDiv(){
+  var bodyH = $('body').height();
+  var controlsH = $('#controls').height();
+  $('#chatty-messages').css('height' , bodyH - controlsH - 15);
+}
 // eventlistener for new message
 document.getElementById("new-message").addEventListener("keyup", function (e) {
   if (e.keyCode == 13) {
@@ -16,6 +23,7 @@ document.getElementById("new-message").addEventListener("keyup", function (e) {
     Chatty.loadMessages();
     e.target.value = "";
     document.getElementById("clear-messages").disabled = false;
+    chattyMessages.scrollTop = chattyMessages.scrollHeight;
   }
 });
 // eventListener for clearMessages
@@ -52,6 +60,7 @@ document.getElementById("save-changes").addEventListener("click", function () {
   } else {
     document.body.classList.remove("large-text");
   }
+  Chatty.loadMessages();
   $('#myModal').modal("hide");
 });
 
@@ -90,3 +99,5 @@ function colorToHex(color) {
   var rgb = blue | (green << 8) | (red << 16);
   return digits[1] + '#' + rgb.toString(16);
 };
+
+resizeMessageDiv();
