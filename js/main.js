@@ -1,4 +1,11 @@
 Chatty.loadXhr();
+var chattyMessages = document.getElementById("chatty-messages");
+window.onresize = resizeMessageDiv;
+function resizeMessageDiv(){
+  var bodyH = $('body').height();
+  var controlsH = $('#controls').height();
+  $('#chatty-messages').css('height' , bodyH - controlsH - 15);
+}
 // eventlistener for new message
 document.getElementById("new-message").addEventListener("keyup", function (e) {
   if (e.keyCode == 13) {
@@ -9,11 +16,14 @@ document.getElementById("new-message").addEventListener("keyup", function (e) {
     if (Chatty.getSelectedMessage() !== null) {
       Chatty.updateMessage(Chatty.getSelectedMessage(), e.target.value);
       Chatty.setSelectedMessage(null);
+      Chatty.loadMessages();
     } else {
       Chatty.addMessage(Chatty.getCounterId(), e.target.value);
       Chatty.setCounterId();
+      Chatty.loadMessages();
+      chattyMessages.scrollTop = chattyMessages.scrollHeight;
     }
-    Chatty.loadMessages();
+
     e.target.value = "";
     document.getElementById("clear-messages").disabled = false;
   }
@@ -26,22 +36,21 @@ document.getElementById("clear-messages").addEventListener("click", function () 
   Chatty.clearMessages();
 });
 
+var fontColor;
+var backgroundColor;
+var largeText;
+var twentyMessages;
+
 // eventListener for dark theme
 document.getElementById('change-theme').addEventListener("click", function () {
   document.getElementById('picker').value = colorToHex(window.getComputedStyle(document.body, null).backgroundColor);
   document.getElementById('picker-font').value = colorToHex(window.getComputedStyle(document.body, null).color);
+  document.getElementById("large-text").checked = largeText;
+  document.getElementById("load-twenty").checked = twentyMessages;
   $('#myModal').modal("show");
 });
-
 document.getElementById("cancel-theme").addEventListener("click", function () {
   $('#myModal').modal("hide");
-  document.getElementById('picker').value = colorToHex(window.getComputedStyle(document.body, null).backgroundColor);
-  document.getElementById('picker-font').value = colorToHex(window.getComputedStyle(document.body, null).color);
-  if (document.body.classList.contains("large-text")) {
-    document.getElementById("large-text").checked = true;
-  } else {
-    document.getElementById("large-text").checked = false;
-  }
 });
 
 document.getElementById("save-changes").addEventListener("click", function () {
@@ -52,6 +61,11 @@ document.getElementById("save-changes").addEventListener("click", function () {
   } else {
     document.body.classList.remove("large-text");
   }
+
+  largeText = document.getElementById("large-text").checked;
+  twentyMessages = document.getElementById("load-twenty").checked;
+
+  Chatty.loadMessages();
   $('#myModal').modal("hide");
 });
 
@@ -90,3 +104,5 @@ function colorToHex(color) {
   var rgb = blue | (green << 8) | (red << 16);
   return digits[1] + '#' + rgb.toString(16);
 };
+
+resizeMessageDiv();
