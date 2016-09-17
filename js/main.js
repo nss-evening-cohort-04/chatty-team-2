@@ -36,22 +36,21 @@ document.getElementById("clear-messages").addEventListener("click", function () 
   Chatty.clearMessages();
 });
 
+var fontColor;
+var backgroundColor;
+var largeText;
+var twentyMessages;
+
 // eventListener for dark theme
 document.getElementById('change-theme').addEventListener("click", function () {
   document.getElementById('picker').value = colorToHex(window.getComputedStyle(document.body, null).backgroundColor);
   document.getElementById('picker-font').value = colorToHex(window.getComputedStyle(document.body, null).color);
+  document.getElementById("large-text").checked = largeText;
+  document.getElementById("load-twenty").checked = twentyMessages;
   $('#myModal').modal("show");
 });
-
 document.getElementById("cancel-theme").addEventListener("click", function () {
   $('#myModal').modal("hide");
-  document.getElementById('picker').value = colorToHex(window.getComputedStyle(document.body, null).backgroundColor);
-  document.getElementById('picker-font').value = colorToHex(window.getComputedStyle(document.body, null).color);
-  if (document.body.classList.contains("large-text")) {
-    document.getElementById("large-text").checked = true;
-  } else {
-    document.getElementById("large-text").checked = false;
-  }
 });
 
 document.getElementById("save-changes").addEventListener("click", function () {
@@ -62,6 +61,10 @@ document.getElementById("save-changes").addEventListener("click", function () {
   } else {
     document.body.classList.remove("large-text");
   }
+
+  largeText = document.getElementById("large-text").checked;
+  twentyMessages = document.getElementById("load-twenty").checked;
+
   Chatty.loadMessages();
   $('#myModal').modal("hide");
 });
